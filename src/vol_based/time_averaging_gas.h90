@@ -1,0 +1,29 @@
+  !
+  ! --> do_avg: do or not time-averaging 
+  ! --> .false./.true.: .false. = do volumetric average, .true. = do Favre average
+  !
+  ! Gas
+  !
+  !!!!!!!!!!!!!!!!!
+  !!GAS <u> <v> <w> <u^2> <v^2> <w^2>
+  !!!!!!!!!!!!!!!!!
+  call time_avg_mt(do_avg,.false.,trim(datapos_vol)//'u_avg_fld_'//fldnum//'_g_vol.out' ,n,ng,istep,i_av,iout1d,+3,+3,+1,+3, &
+                   zc,dzf/lz,(     vof),rho_gas,u ,u_avg_g ,u_sqr_g ,u_vol_avg_g ,u_vol_sqr_g )
+  call time_avg_mt(do_avg,.false.,trim(datapos_vol)//'v_avg_fld_'//fldnum//'_g_vol.out' ,n,ng,istep,i_av,iout1d,+3,+3,+1,+3, &
+                   zc,dzf/lz,(     vof),rho_gas,v ,v_avg_g ,v_sqr_g ,v_vol_avg_g ,v_vol_sqr_g )
+  call time_avg_mt(do_avg,.false.,trim(datapos_vol)//'w_avg_fld_'//fldnum//'_g_vol.out' ,n,ng,istep,i_av,iout1d,+3,+3,+1,+3, &
+                   zc,dzf/lz,(     vof),rho_gas,w ,w_avg_g ,w_sqr_g ,w_vol_avg_g ,w_vol_sqr_g )
+  !!!!!!!!!!!!!!!!!
+  !!GAS <uv> <vw> <wu> <(uv)^2> <(vw)^2> <(wu)^2>
+  !!!!!!!!!!!!!!!!!
+  call time_avg_mt(do_avg,.false.,trim(datapos_vol)//'uv_avg_fld_'//fldnum//'_g_vol.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(     vof),rho_gas,uv,uv_avg_g,uv_sqr_g,uv_vol_avg_g,uv_vol_sqr_g)
+  call time_avg_mt(do_avg,.false.,trim(datapos_vol)//'vw_avg_fld_'//fldnum//'_g_vol.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(     vof),rho_gas,vw,vw_avg_g,vw_sqr_g,vw_vol_avg_g,vw_vol_sqr_g)
+  call time_avg_mt(do_avg,.false.,trim(datapos_vol)//'wu_avg_fld_'//fldnum//'_g_vol.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(     vof),rho_gas,wu,wu_avg_g,wu_sqr_g,wu_vol_avg_g,wu_vol_sqr_g)
+  !!!!!!!!!!!!!!!!!
+  !!GAS <vorx> <vorx^2> 
+  !!!!!!!!!!!!!!!!!
+  call time_avg_mt(do_avg,.false.,trim(datapos_vol)//'vorx_avg_fld_'//fldnum//'_g_vol.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(     vof),rho_gas,vorx,vorx_avg_g,vorx_sqr_g,vorx_vol_avg_g,vorx_vol_sqr_g)

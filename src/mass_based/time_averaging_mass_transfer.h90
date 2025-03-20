@@ -1,0 +1,20 @@
+   !
+   ! --> do_avg: do or not time-averaging 
+   ! --> .false./.true.: .false. = do volumetric average, .true. = do Favre average
+   !
+   ! Mass transfer
+   !
+   !!!!!!!!!!!!!!!!
+   !GAS <Y> <Y^2> 
+   !!!!!!!!!!!!!!!!
+   call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'sca_avg_fld_'//fldnum//'_g_mass.out' ,n,ng,istep,i_av,iout1d,+3,+3,+1,+1, &
+                    zc,dzf/lz,(     vof),rho_gas,sca ,sca_avg_g ,sca_sqr_g ,sca_vol_avg_g ,sca_vol_sqr_g )
+   !!!!!!!!!!!!!!!!
+   !GAS <uY> <vY> <wY> <(uY)^2> <(vY)^2> <(wY)^2> 
+   !!!!!!!!!!!!!!!!
+   call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'usca_avg_fld_'//fldnum//'_g_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                    zc,dzf/lz,(     vof),rho_gas,usca,usca_avg_g,usca_sqr_g,usca_vol_avg_g,usca_vol_sqr_g)
+   call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'vsca_avg_fld_'//fldnum//'_g_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                    zc,dzf/lz,(     vof),rho_gas,vsca,vsca_avg_g,vsca_sqr_g,vsca_vol_avg_g,vsca_vol_sqr_g)
+   call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'wsca_avg_fld_'//fldnum//'_g_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                    zc,dzf/lz,(     vof),rho_gas,wsca,wsca_avg_g,wsca_sqr_g,wsca_vol_avg_g,wsca_vol_sqr_g)

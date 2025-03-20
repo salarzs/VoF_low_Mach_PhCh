@@ -1,0 +1,28 @@
+  ! out2d(fname,inorm,islice,p)
+  !
+  ! saves a planar slice of a scalar field into a binary file (see output.f90)
+  !
+  ! fname  -> name of the output file
+  ! inorm  -> plane is perpendicular to direction
+  !           inorm (1,2,3)
+  ! islice -> plane is of constant index islice 
+  !           in direction inorm
+  ! p      -> 3D input scalar field
+  !
+  ! modify the calls below as desired
+  !
+  ! call out2d(trim(datadir)//'vex_slice_fld_'//fldnum//'.bin',2,ng(2)/2,u(1:n(1),1:n(2),1:n(3)))
+  ! call out2d(trim(datadir)//'vey_slice_fld_'//fldnum//'.bin',2,ng(2)/2,v(1:n(1),1:n(2),1:n(3)))
+  ! call out2d(trim(datadir)//'vez_slice_fld_'//fldnum//'.bin',2,ng(2)/2,w(1:n(1),1:n(2),1:n(3)))
+  ! call out2d(trim(datadir)//'pre_slice_fld_'//fldnum//'.bin',2,ng(2)/2,p(1:n(1),1:n(2),1:n(3)))
+  ! call out2d(trim(datadir)//'liq_slice_fld_'//fldnum//'.bin',2,ng(2)/2,tmple(1:n(1),1:n(2),1:n(3)))
+  ! call out2d(trim(datadir)//'gas_slice_fld_'//fldnum//'.bin',2,ng(2)/2,tmpge(1:n(1),1:n(2),1:n(3)))  
+  ! call out2d(trim(datadir)//'vof_slice_fld_'//fldnum//'.bin',2,ng(2)/2,vof(1:n(1),1:n(2),1:n(3)))
+  ! call out2d(trim(datadir)//'tmp_slice_fld_'//fldnum//'.bin',2,ng(2)/2,tmp(1:n(1),1:n(2),1:n(3)))
+  ! call out2d(trim(datadir)//'sca_slice_fld_'//fldnum//'.bin',2,ng(2)/2,sca(1:n(1),1:n(2),1:n(3)))   
+  ! call out2d(trim(datadir)//'mfx_slice_fld_'//fldnum//'.bin',2,ng(2)/2,mflux(1:n(1),1:n(2),1:n(3)))  
+  ! call out2d(trim(datadir)//'phi_slice_fld_'//fldnum//'.bin',2,ng(2)/2,phi(1:n(1),1:n(2),1:n(3)))   
+  ! call out2d(trim(datadir)//'sce_slice_fld_'//fldnum//'.bin',2,ng(2)/2,scae(1:n(1),1:n(2),1:n(3)))  
+  !call out2d(trim(datadir)//'u_slice.bin',2,ng(2)/2,u(1:n(1),1:n(2),1:n(3)))
+  !call out2d(trim(datadir)//'v_slice.bin',2,ng(2)/2,v(1:n(1),1:n(2),1:n(3)))
+  !call out2d(trim(datadir)//'w_slice.bin',2,ng(2)/2,w(1:n(1),1:n(2),1:n(3)))

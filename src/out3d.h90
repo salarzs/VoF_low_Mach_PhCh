@@ -1,0 +1,36 @@
+  ! out3d(fname,nskip,p)
+  !
+  ! saves a 3D scalar field into a binary file (see output.f90)
+  !
+  ! fname  -> name of the output file
+  ! nskip  -> array with the step size for which the
+  !           field is written; i.e.: (/1,1,1/) 
+  !           writes the full field 
+  ! p      -> 3D input scalar field
+  !
+  ! modify the calls below as desired
+  !
+  call out3d(trim(datadir)//'vex_fld_'//fldnum//'.bin',(/1,1,1/),u(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'vey_fld_'//fldnum//'.bin',(/1,1,1/),v(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'vez_fld_'//fldnum//'.bin',(/1,1,1/),w(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'pre_fld_'//fldnum//'.bin',(/1,1,1/),p(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'vof_fld_'//fldnum//'.bin',(/1,1,1/),vof(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'tmp_fld_'//fldnum//'.bin',(/1,1,1/),tmp(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'sca_fld_'//fldnum//'.bin',(/1,1,1/),sca(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'mfx_fld_'//fldnum//'.bin',(/1,1,1/),mflux(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'sce_fld_'//fldnum//'.bin',(/1,1,1/),scae(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'phi_fld_'//fldnum//'.bin',(/1,1,1/),phi(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'rhg_fld_'//fldnum//'.bin',(/1,1,1/),rho_gas(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'dlg_fld_'//fldnum//'.bin',(/1,1,1/),d_lg(1:n(1),1:n(2),1:n(3)))
+  call out3d(trim(datadir)//'tle_fld_'//fldnum//'.bin',(/1,1,1/),tmple(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'tge_fld_'//fldnum//'.bin',(/1,1,1/),tmpge(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'sce_fld_'//fldnum//'.bin',(/1,1,1/),scae(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'scf_fld_'//fldnum//'.bin',(/1,1,1/),sc_f(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'prf_fld_'//fldnum//'.bin',(/1,1,1/),pr_f(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'n_x_fld_'//fldnum//'.bin',(/1,1,1/),normlx(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'n_y_fld_'//fldnum//'.bin',(/1,1,1/),normly(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'n_z_fld_'//fldnum//'.bin',(/1,1,1/),normlz(1:n(1),1:n(2),1:n(3)))
+  !call out3d(trim(datadir)//'nvx_fld_'//fldnum//'.bin',(/1,1,1/),nor(1:n(1),1:n(2),1:n(3),1))
+  !call out3d(trim(datadir)//'nvy_fld_'//fldnum//'.bin',(/1,1,1/),nor(1:n(1),1:n(2),1:n(3),2))
+  !call out3d(trim(datadir)//'nvz_fld_'//fldnum//'.bin',(/1,1,1/),nor(1:n(1),1:n(2),1:n(3),3))
+

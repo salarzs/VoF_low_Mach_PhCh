@@ -1,0 +1,34 @@
+  !
+  ! --> do_avg: do or not time-averaging 
+  ! --> .false./.true.: .false. = do volumetric average, .true. = do Favre average
+  !
+  ! Heat transfer
+  !
+  !!!!!!!!!!!!!!!!
+  !LIQUID <T> <T^2> 
+  !!!!!!!!!!!!!!!!
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'tmp_avg_fld_'//fldnum//'_l_mass.out' ,n,ng,istep,i_av,iout1d,+3,+3,+1,+3, &
+                   zc,dzf/lz,(1.d0-vof),rho_liq,tmp ,tmp_avg_l ,tmp_sqr_l ,tmp_vol_avg_l ,tmp_vol_sqr_l )
+  !!!!!!!!!!!!!!!!
+  !LIQUID <uT> <vT> <wT> <(uT)^2> <(vT)^2> <(wT)^2> 
+  !!!!!!!!!!!!!!!!
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'utmp_avg_fld_'//fldnum//'_l_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(1.d0-vof),rho_liq,utmp,utmp_avg_l,utmp_sqr_l,utmp_vol_avg_l,utmp_vol_sqr_l)
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'vtmp_avg_fld_'//fldnum//'_l_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(1.d0-vof),rho_liq,vtmp,vtmp_avg_l,vtmp_sqr_l,vtmp_vol_avg_l,vtmp_vol_sqr_l)
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'wtmp_avg_fld_'//fldnum//'_l_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(1.d0-vof),rho_liq,wtmp,wtmp_avg_l,wtmp_sqr_l,wtmp_vol_avg_l,wtmp_vol_sqr_l)
+  !!!!!!!!!!!!!!!!
+  !GAS <T> <T^2> 
+  !!!!!!!!!!!!!!!!
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'tmp_avg_fld_'//fldnum//'_g_mass.out' ,n,ng,istep,i_av,iout1d,+3,+3,+1,+3, &
+                   zc,dzf/lz,(     vof),rho_gas,tmp ,tmp_avg_g ,tmp_sqr_g ,tmp_vol_avg_g ,tmp_vol_sqr_g )
+  !!!!!!!!!!!!!!!!
+  !GAS <uT> <vT> <wT> <(uT)^2> <(vT)^2> <(wT)^2> 
+  !!!!!!!!!!!!!!!!
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'utmp_avg_fld_'//fldnum//'_g_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(     vof),rho_gas,utmp,utmp_avg_g,utmp_sqr_g,utmp_vol_avg_g,utmp_vol_sqr_g)
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'vtmp_avg_fld_'//fldnum//'_g_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(     vof),rho_gas,vtmp,vtmp_avg_g,vtmp_sqr_g,vtmp_vol_avg_g,vtmp_vol_sqr_g)
+  call time_avg_mt(do_avg,.true.,trim(datapos_mass)//'wtmp_avg_fld_'//fldnum//'_g_mass.out',n,ng,istep,i_av,iout1d,+3,+3,+1,+0, &
+                   zc,dzf/lz,(     vof),rho_gas,wtmp,wtmp_avg_g,wtmp_sqr_g,wtmp_vol_avg_g,wtmp_vol_sqr_g)

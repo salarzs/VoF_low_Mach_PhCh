@@ -1,0 +1,166 @@
+  !-----------------------------------------------------------------------------
+  !
+  ! Important premises: 
+  ! 1. In case two-dimensional (using the flag -DTWOD) simulations, the 
+  !    unresolved direction (x-dir) is set to be periodic;
+  ! 2. Remember to use capital letters when choosing the boundary conditions.
+  !
+  !-----------------------------------------------------------------------------
+  !
+  ! boundary conditions
+  ! P -> periodic, D -> Dirichlet, N -> Neumann
+  !
+  !-----------------------------------------------------------------------------
+  ! velocity --> (u,v,w),(up,vp,wp),(us,vs,ws)
+  !
+    character(len=1), parameter, dimension(0:1,3,3)   :: cbcvel = &
+      reshape((/'P','P',   & ! u in x lower,upper bound
+                'P','P',   & ! u in y lower,upper bound
+                'P','P',   & ! u in z lower,upper bound
+                'P','P',   & ! v in x lower,upper bound
+                'N','N',   & ! v in y lower,upper bound
+                'N','N',   & ! v in z lower,upper bound
+                'P','P',   & ! w in x lower,upper bound
+                'N','N',   & ! w in y lower,upper bound
+                'N','N'/), & ! w in z lower,upper bound
+                shape(cbcvel))
+  ! values pertaining to the velocity BCs (arbitrary for 'P')
+      real(8)         , parameter, dimension(0:1,3,3) :: bcvel  = &
+        reshape((/0.d0,0.d0,   & 
+                  0.d0,0.d0,   &
+                  0.d0,0.d0,   &
+                  0.d0,0.d0,   &
+                  0.d0,0.d0,   &
+                  0.d0,0.d0,   &
+                  0.d0,0.d0,   &
+                  0.d0,0.d0,   &
+                  0.d0,0.d0/), &
+                  shape(bcvel))
+  !-----------------------------------------------------------------------------
+  ! pressure and potential (homogeneous) --> p,aux
+  !
+    character(len=1), parameter, dimension(0:1,3) ::  cbcpre = &
+      reshape((/'P','P',   & ! p in x lower,upper bound
+                'D','D',   & ! p in y lower,upper bound
+                'D','D'/), & ! p in z lower,upper bound
+                shape(cbcpre))
+    real(8)         , parameter, dimension(0:1,3) ::   bcpre = &
+      reshape((/0.d0,0.d0,   & ! p in x lower,upper bound
+                0.d0,0.d0,   & ! p in y lower,upper bound
+                0.d0,0.d0/), & ! p in z lower,upper bound
+                shape(bcpre))
+  !-----------------------------------------------------------------------------
+  ! volume of fluid (homogeneous) --> vof,psi
+  !
+    character(len=1), parameter, dimension(0:1,3) ::  cbcvof = &
+      reshape((/'P','P',   & ! vof in x lower,upper bound
+                'N','N',   & ! vof in y lower,upper bound
+                'N','N'/), & ! vof in z lower,upper bound
+                shape(cbcvof))
+    real(8)         , parameter, dimension(0:1,3) ::   bcvof = &
+      reshape((/0.d0,0.d0,   & ! vof in x lower,upper bound
+                0.d0,0.d0,   & ! vof in y lower,upper bound
+                0.d0,0.d0/), & ! vof in z lower,upper bound
+                shape(bcvof))
+  !-----------------------------------------------------------------------------
+  ! temperature --> tmp
+  !
+    character(len=1), parameter, dimension(0:1,3) ::  cbctmp = &
+      reshape((/'P','P',   & ! temperature in x lower,upper bound
+                'D','D',   & ! temperature in y lower,upper bound
+                'D','D'/), & ! temperature in z lower,upper bound
+                shape(cbctmp))
+    real(8), parameter :: tb_t = 298.d0 
+    real(8), parameter :: tb_b = 298.d0 
+    real(8)         , parameter, dimension(0:1,3) ::   bctmp = &
+      reshape((/0.d0,0.d0,   & ! temperature in x lower,upper bound   !!!!!!!!!!!!!it was 1 before
+                tb_b,tb_t,   & ! temperature in y lower,upper bound
+                tb_b,tb_t/), & ! temperature in z lower,upper bound
+             shape(bctmp))
+  !-----------------------------------------------------------------------------
+  ! vapor mass fraction --> sca
+  !
+    character(len=1), parameter, dimension(0:1,3) ::  cbcsca = &
+      reshape((/'P','P',   & ! vapor mass in x lower,upper bound
+                'D','D',   & ! vapor mass in y lower,upper bound
+                'D','D'/), & ! vapor mass in z lower,upper bound
+                shape(cbcsca))
+    real(8), parameter :: sb = 0.d0 
+    real(8)         , parameter, dimension(0:1,3) ::   bcsca = &
+      reshape((/0.d0,0.d0,   & ! vapor mass in x lower,upper bound    !!!!!!!!!!!
+                   0.01d0,0.01d0,   & ! vapor mass in y lower,upper bound
+                   0.01d0,0.01d0/), & ! vapor mass in z lower,upper bound
+                shape(bcsca))
+  !-----------------------------------------------------------------------------
+  ! level-set --> ls,phi
+  !
+    character(len=1), parameter, dimension(0:1,3) ::  cbcphi = &
+      reshape((/'P','P',   & ! level-set in x lower,upper bound
+                'N','N',   & ! level-set in y lower,upper bound
+                'N','N'/), & ! level-set in z lower,upper bound
+             shape(cbcphi))
+    real(8)         , parameter, dimension(0:1,3) ::   bcphi = &
+      reshape((/0.d0,0.d0,   & ! level-set in x lower,upper bound
+                0.d0,0.d0,   & ! level-set in y lower,upper bound
+                0.d0,0.d0/), & ! level-set in z lower,upper bound
+             shape(bcphi))
+  !-----------------------------------------------------------------------------
+  ! extended field --> scae (nb: since it is an extended field, it
+  !                              seems that for this field a N bc  
+  !                              should be always imposed even in a 
+  !                              triperiodic domain.)
+  !
+    character(len=1), parameter, dimension(0:1,3) ::  cbcext = &
+      reshape((/'P','P',   & ! ext. vapor mass in x lower,upper bound
+                'N','N',   & ! ext. vapor mass in y lower,upper bound
+                'N','N'/), & ! ext. vapor mass in z lower,upper bound
+             shape(cbcext))
+    real(8)         , parameter, dimension(0:1,3) ::   bcext = &
+      reshape((/0.d0,0.d0,   & ! ext. vapor mass in x lower,upper bound
+                0.d0,0.d0,   & ! ext. vapor mass in y lower,upper bound
+                0.d0,0.d0/), & ! ext. vapor mass in z lower,upper bound
+             shape(bcext))
+  !-----------------------------------------------------------------------------
+  ! forcing the flow with a pressure gradient
+  ! that balances the total wall shear 
+  ! (e.g. for a pressure-driven channel) ! change to constant DPDX!
+  !
+  logical, parameter, dimension(3) :: is_forced = & 
+      reshape((/.false. ,   & !  in x
+                .false. ,   & !  in y
+                .false. /), & !  in z
+                shape(is_forced))
+  !
+  ! desired values of bulk velocities 
+  ! (only relevant if the corresponding boolean
+  !  above is .true.)
+  !
+  real(8), parameter, dimension(3) :: velf = & 
+      reshape((/0.d0,   & !  in x
+                0.d0,   & !  in y
+                0.d0/), & !  in z
+                shape(velf))
+  !
+  ! mean pressre gradient
+  !
+  real(8), parameter, dimension(3) :: dpdl = & 
+      reshape((/0.d0,   & !  in x
+                0.d0,   & !  in y
+                0.d0/), & !  in z
+                shape(velf))
+  !
+  ! outflow boundary condition
+  ! if is_outflow(i,j) is true, an outflow condition is prescribed for
+  ! the face-centered velocity at that boundary
+  ! the outflow BC is determined from the constrain on the divergence:
+  !  a. if no volume sources are present: \div(u,v,w) is zero; 
+  !  b. if volume sources are present. This volume source can be due to
+  !     phase change, volume and liquid expansion (nb: NOT STILL IMPLEMENTED). 
+  !
+  logical, parameter, dimension(0:1,3) :: is_outflow = & 
+      reshape((/.false.,.false.,   & ! outflow in x lower,upper bound
+                .true. ,.true. ,   & ! outflow in y lower,upper bound
+                .true. ,.true.  /), & ! outflow in z lower,upper bound
+                shape(is_outflow))
+  !
+  !-----------------------------------------------------------------------------
